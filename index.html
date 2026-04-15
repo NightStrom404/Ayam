@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIGHTSTORM404 | Cyber Security Portfolio</title>
+    
+<!-- SEO -->
+<meta name="description" content="NightStorm404 - Cyber Security Portfolio, Web Analysis, Security Testing, and Performance Optimization.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="NightStorm404">
+<link rel="canonical" href="https://response200.biz.id/">
+
+<!-- THEME -->
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="NightStorm.404 🪽🕊️">
+<meta property="og:description" content="Cyber Security Portfolio by NightStorm404">
+<meta property="og:image" content="https://response200.biz.id/ayam.png">
+<meta property="og:url" content="https://response200.biz.id/">
+<meta property="og:type" content="website">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NightStorm.404 🪽🕊️">
+<meta name="twitter:description" content="Cyber Security Portfolio by NightStorm404">
+<meta name="twitter:image" content="https://response200.biz.id/ayam.png">
+
+<!-- GOOGLE -->
+<meta name="google-site-verification" content="epzVOzGFNrfAk8nHV4WHfZRf_uar9BD1shrUiAlllwY" />
+
+<!-- CAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LdKsnosAAAAALG1X3tCPIDIh4mawnMTii-YPDNS" async defer></script>
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'JetBrains Mono', monospace; }
+        body { background: #0a0a0f; overflow-x: hidden; }
+        
+        #matrix-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; opacity: 0.15;
+        }
+        
+        .glitch {
+            position: relative; color: #00ff41; font-size: 4rem; font-weight: 800;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .glitch::before { left: 2px; text-shadow: -2px 0 #00d9ff; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -2px 0 #ff00ff; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); } 20% { clip: rect(89px, 9999px, 13px, 0); }
+            40% { clip: rect(12px, 9999px, 76px, 0); } 60% { clip: rect(65px, 9999px, 23px, 0); }
+            80% { clip: rect(34px, 9999px, 89px, 0); } 100% { clip: rect(78px, 9999px, 45px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 99px, 0); } 20% { clip: rect(23px, 9999px, 45px, 0); }
+            40% { clip: rect(89px, 9999px, 12px, 0); } 60% { clip: rect(34px, 9999px, 67px, 0); }
+            80% { clip: rect(76px, 9999px, 34px, 0); } 100% { clip: rect(12px, 9999px, 89px, 0); }
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); } 10% { transform: skew(-2deg); }
+            20% { transform: skew(2deg); } 30% { transform: skew(0deg); } 100% { transform: skew(0deg); }
+        }
+        
+        .terminal-box {
+            background: rgba(10, 10, 15, 0.95); border: 1px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+            position: relative; overflow: hidden;
+        }
+        .terminal-box::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            animation: scanline 3s linear infinite;
+        }
+        @keyframes scanline {
+            0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; }
+            90% { opacity: 1; } 100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        .cursor { display: inline-block; width: 10px; height: 1.2em; background: #00ff41; animation: blink 1s infinite; vertical-align: text-bottom; margin-left: 2px; }
+        @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+        
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; animation: pulse-dot 2s infinite; }
+        .status-online { background: #00ff41; box-shadow: 0 0 10px #00ff41; }
+        .status-warning { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .hover-glow:hover { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41; transform: translateX(5px); transition: all 0.3s ease; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 4px; }
+        
+        .grid-bg {
+            background-image: linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .typing-text { overflow: hidden; white-space: nowrap; border-right: 2px solid #00ff41; animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00ff41 } }
+        
+        #traffic-canvas { width: 100%; height: 120px; background: rgba(0, 0, 0, 0.5); border: 1px solid #00ff41; }
+        .metric-value { font-variant-numeric: tabular-nums; }
+        
+        .live-indicator { display: inline-flex; align-items: center; font-size: 0.7rem; color: #00ff41; }
+        .live-indicator::before { content: ''; width: 6px; height: 6px; background: #ff0040; border-radius: 50%; margin-right: 4px; animation: live-pulse 1s infinite; }
+        @keyframes live-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+    </style>
+</head>
+<body class="text-gray-300 min-h-screen grid-bg">
+    <canvas id="matrix-canvas"></canvas>
+    
+    <div class="relative z-10">
+        <header class="min-h-screen flex flex-col items-center justify-center px-4">
+            <div class="text-center">
+                <div class="glitch mb-8" data-text="NIGHTSTORM404">NIGHTSTORM404</div>
+                <div class="terminal-box p-8 max-w-3xl mx-auto rounded-lg">
+                    <div class="text-left space-y-4">
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+                            <span>root@nightstorm404:~</span>
+                        </div>
+                        <div class="space-y-2 text-green-400">
+                            <p class="typing-text">> Initializing secure connection...</p>
+                            <p class="flex items-center"><span class="status-dot status-online"></span>Status: <span class="text-white ml-2">ONLINE</span></p>
+                            <p class="flex items-center"><span class="status-dot status-online"></span>System: <span class="text-white ml-2">PROTECTED</span></p>
+                            <p class="flex items-center"><span class="status-dot status-online"></span>Identity: <span class="text-white ml-2">NIGHTSTORM404</span></p>
+                            <p class="flex items-center"><span class="status-dot status-warning"></span>Encryption: <span class="text-white ml-2">AES-256-GCM</span></p>
+                            <p class="flex items-center"><span class="status-dot status-online"></span>Firewall: <span class="text-white ml-2">ACTIVE</span></p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-green-900">
+                            <p class="text-cyan-400 text-sm">> Access granted. Welcome to the system.</p>
+                            <p class="text-gray-500 text-xs mt-2">Session ID: <span id="session-id"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-10 animate-bounce">
+                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- REAL-TIME Network Monitor -->
+        <section class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-green-400 mb-12 text-center border-b border-green-900 pb-4">
+                    <span class="text-cyan-400">[</span> REAL_TIME_MONITOR <span class="live-indicator ml-2">LIVE</span> <span class="text-cyan-400">]</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Real-time Network Traffic -->
+                    <div class="terminal-box p-6 rounded-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-cyan-400 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                                NETWORK_TRAFFIC
+                            </h3>
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <canvas id="traffic-canvas"></canvas>
+                        <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
+                            <div class="bg-black/50 p-2 rounded border border-green-900">
+                                <span class="text-gray-500 block">DOWNLOAD</span>
+                                <span class="text-green-400 text-lg metric-value" id="download-speed">0.00</span>
+                                <span class="text-gray-600">Mbps</span>
+                            </div>
+                            <div class="bg-black/50 p-2 rounded border border-green-900">
+                                <span class="text-gray-500 block">UPLOAD</span>
+                                <span class="text-cyan-400 text-lg metric-value" id="upload-speed">0.00</span>
+                                <span class="text-gray-600">Mbps</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500">
+                            <span>Latency: <span id="latency" class="text-yellow-400">--</span> ms</span>
+                            <span class="mx-2">|</span>
+                            <span>Connection: <span id="connection-type" class="text-cyan-400">--</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Real-time Performance Metrics -->
+                    <div class="terminal-box p-6 rounded-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-cyan-400 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                                SYSTEM_METRICS
+                            </h3>
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span>Page Load Time</span><span id="load-time" class="text-green-400">--</span>
+                                </div>
+                                <div class="w-full bg-gray-800 h-2 rounded overflow-hidden">
+                                    <div id="load-bar" class="h-full bg-green-400 transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span>DOM Ready</span><span id="dom-time" class="text-cyan-400">--</span>
+                                </div>
+                                <div class="w-full bg-gray-800 h-2 rounded overflow-hidden">
+                                    <div id="dom-bar" class="h-full bg-cyan-400 transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span>Network Latency</span><span id="network-latency" class="text-yellow-400">--</span>
+                                </div>
+                                <div class="w-full bg-gray-800 h-2 rounded overflow-hidden">
+                                    <div id="latency-bar" class="h-full bg-yellow-400 transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="border-t border-green-900 pt-3 mt-3">
+                                <div class="grid grid-cols-2 gap-2 text-xs">
+                                    <div><span class="text-gray-500">Requests:</span><span id="request-count" class="text-green-400 ml-1">0</span></div>
+                                    <div><span class="text-gray-500">Data Transfer:</span><span id="data-transfer" class="text-cyan-400 ml-1">0 KB</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Real-time Browser Info -->
+                    <div class="terminal-box p-6 rounded-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-cyan-400 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                CLIENT_INTEL
+                            </h3>
+                            <span class="live-indicator">LIVE</span>
+                        </div>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between border-b border-green-900 pb-2">
+                                <span class="text-gray-500">User Agent</span><span id="user-agent" class="text-green-400 truncate max-w-[150px]">--</span>
+                            </div>
+                            <div class="flex justify-between border-b border-green-900 pb-2">
+                                <span class="text-gray-500">Platform</span><span id="platform" class="text-cyan-400">--</span>
+                            </div>
+                            <div class="flex justify-between border-b border-green-900 pb-2">
+                                <span class="text-gray-500">Screen</span><span id="screen-res" class="text-yellow-400">--</span>
+                            </div>
+                            <div class="flex justify-between border-b border-green-900 pb-2">
+                                <span class="text-gray-500">Language</span><span id="language" class="text-green-400">--</span>
+                            </div>
+                            <div class="flex justify-between border-b border-green-900 pb-2">
+                                <span class="text-gray-500">Online Status</span><span id="online-status" class="text-green-400">--</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-500">Memory</span><span id="memory-usage" class="text-cyan-400">--</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-2 bg-black/50 rounded border border-green-900">
+                            <div class="text-xs text-gray-500 mb-1">IP ADDRESS (Estimated)</div>
+                            <div id="ip-address" class="text-green-400 font-bold">Detecting...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-20 px-4 bg-black/30">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-green-400 mb-12 text-center border-b border-green-900 pb-4">
+                    <span class="text-cyan-400">[</span> IDENTITY_PROFILE <span class="text-cyan-400">]</span>
+                </h2>
+                <div class="terminal-box p-8 rounded-lg">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="mb-6">
+                                <span class="text-cyan-400 text-sm">$ whoami</span>
+                                <h3 class="text-2xl text-white mt-2">NightStorm404</h3>
+                                <p class="text-gray-400 text-sm">Cyber Security Specialist & Digital Guardian</p>
+                            </div>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-start">
+                                    <span class="text-green-400 mr-2">></span>
+                                    <span id="about-text"></span><span class="cursor"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="border border-green-900 p-4 rounded bg-black/50">
+                                <h4 class="text-cyan-400 text-sm mb-3">SKILL_MATRIX</h4>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-xs"><span>Penetration Testing</span><span class="text-green-400">95%</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded"><div class="bg-green-400 h-1 rounded" style="width: 95%"></div></div>
+                                    <div class="flex justify-between text-xs"><span>Network Security</span><span class="text-green-400">90%</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded"><div class="bg-green-400 h-1 rounded" style="width: 90%"></div></div>
+                                    <div class="flex justify-between text-xs"><span>Malware Analysis</span><span class="text-green-400">85%</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded"><div class="bg-green-400 h-1 rounded" style="width: 85%"></div></div>
+                                    <div class="flex justify-between text-xs"><span>Incident Response</span><span class="text-green-400">88%</span></div>
+                                    <div class="w-full bg-gray-800 h-1 rounded"><div class="bg-green-400 h-1 rounded" style="width: 88%"></div></div>
+                                </div>
+                            </div>
+                            <div class="border border-green-900 p-4 rounded bg-black/50">
+                                <h4 class="text-cyan-400 text-sm mb-3">CERTIFICATIONS</h4>
+                                <ul class="text-xs space-y-1 text-gray-400">
+                                    <li class="flex items-center"><span class="text-green-400 mr-2">+</span> OSCP - Offensive Security</li>
+                                    <li class="flex items-center"><span class="text-green-400 mr-2">+</span> CEH - Certified Ethical Hacker</li>
+                                    <li class="flex items-center"><span class="text-green-400 mr-2">+</span> CISSP - ISC²</li>
+                                    <li class="flex items-center"><span class="text-green-400 mr-2">+</span> Security+ - CompTIA</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terminal Section -->
+        <section class="py-20 px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-green-400 mb-12 text-center border-b border-green-900 pb-4">
+                    <span class="text-cyan-400">[</span> COMMAND_INTERFACE <span class="text-cyan-400">]</span>
+                </h2>
+                <div class="terminal-box p-6 rounded-lg">
+                    <div class="flex items-center text-xs text-gray-500 mb-4 border-b border-green-900 pb-2">
+                        <span class="mr-4">TERMINAL</span><span class="mr-4">bash</span><span>UTF-8</span>
+                    </div>
+                    <div class="space-y-3 text-sm" id="terminal-output">
+                        <div class="text-gray-500">Last login: <span id="last-login"></span> from <span id="client-ip">--</span></div>
+                        <div class="flex items-center">
+                            <span class="text-green-400 mr-2">nightstorm404@system:~$</span>
+                            <span class="text-cyan-400">ls -la skills/</span>
+                        </div>
+                        <div class="text-gray-300 pl-4">
+                            drwxr-xr-x  vulnerability_assessment<br>
+                            drwxr-xr-x  threat_intelligence<br>
+                            drwxr-xr-x  digital_forensics<br>
+                            drwxr-xr-x  secure_coding<br>
+                            -rwxr-xr-x  exploit_development
+                        </div>
+                        <div class="flex items-center mt-4">
+                            <span class="text-green-400 mr-2">nightstorm404@system:~$</span>
+                            <span class="text-cyan-400">cat mission.txt</span>
+                        </div>
+                        <div class="text-gray-300 pl-4 border-l-2 border-green-400 pl-4">
+                            "Protecting digital assets through proactive security measures.<br>
+                            Every system has vulnerabilities; my mission is to find and secure them<br>
+                            before malicious actors do. Security is not a product, but a process."
+                        </div>
+                        <div class="flex items-center mt-4">
+                            <span class="text-green-400 mr-2">nightstorm404@system:~$</span>
+                            <span class="cursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 px-4 border-t border-green-900">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="hover-glow text-green-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                    <a href="#" class="hover-glow text-cyan-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    <a href="#" class="hover-glow text-green-400"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                </div>
+                <div class="text-xs text-gray-600">
+                    <p class="mb-2">ENCRYPTED CONNECTION | AES-256-GCM | TLS 1.3</p>
+                    <p class="text-green-400">Copyright 2026 NightStorm404. All rights reserved.</p>
+                    <p class="mt-2 text-gray-700">System time: <span id="system-time"></span></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}\\\"";
+        const matrixArray = matrix.split("");
+        const fontSize = 10, columns = canvas.width / fontSize;
+        const drops = []; for (let x = 0; x < columns; x++) drops[x] = 1;
+        
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(10, 10, 15, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0"; ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        
+        // Session & Time
+        document.getElementById('session-id').textContent = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        const now = new Date();
+        document.getElementById('last-login').textContent = now.toLocaleString('en-US', { weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        
+        // Typing Animation
+        const aboutText = "Digital security enthusiast with expertise in penetration testing, vulnerability assessment, and network defense. Committed to making cyberspace safer through ethical hacking and continuous learning.";
+        const aboutElement = document.getElementById('about-text');
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < aboutText.length) {
+                aboutElement.textContent += aboutText.charAt(charIndex);
+                charIndex++; setTimeout(typeWriter, 30);
+            }
+        }
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { typeWriter(); observer.unobserve(entry.target); } }); });
+        observer.observe(aboutElement);
+        
+        function updateSystemTime() { document.getElementById('system-time').textContent = new Date().toISOString(); }
+        setInterval(updateSystemTime, 1000); updateSystemTime();
+        
+        // ============================================
+        // REAL-TIME NETWORK MONITORING
+        // ============================================
+        
+        const trafficCanvas = document.getElementById('traffic-canvas');
+        const trafficCtx = trafficCanvas.getContext('2d');
+        trafficCanvas.width = trafficCanvas.offsetWidth; trafficCanvas.height = trafficCanvas.offsetHeight;
+        
+        const maxDataPoints = 50;
+        const downloadData = new Array(maxDataPoints).fill(0);
+        const uploadData = new Array(maxDataPoints).fill(0);
+        
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        let totalBytes = 0, requestCount = 0;
+        
+        if ('PerformanceObserver' in window) {
+            const perfObserver = new PerformanceObserver((list) => {
+                for (const entry of list.getEntries()) {
+                    if (entry.transferSize) {
+                        totalBytes += entry.transferSize; requestCount++;
+                        document.getElementById('request-count').textContent = requestCount;
+                        document.getElementById('data-transfer').textContent = (totalBytes / 1024).toFixed(2) + ' KB';
+                    }
+                }
+            });
+            perfObserver.observe({ entryTypes: ['resource'] });
+        }
+        
+        function measureNetworkSpeed() {
+            const navigation = performance.getEntriesByType('navigation')[0];
+            if (navigation) {
+                const loadTime = navigation.loadEventEnd - navigation.startTime;
+                const domTime = navigation.domContentLoadedEventEnd - navigation.startTime;
+                document.getElementById('load-time').textContent = loadTime.toFixed(0) + 'ms';
+                document.getElementById('dom-time').textContent = domTime.toFixed(0) + 'ms';
+                document.getElementById('load-bar').style.width = Math.min(loadTime / 50, 100) + '%';
+                document.getElementById('dom-bar').style.width = Math.min(domTime / 30, 100) + '%';
+                
+                if (navigation.transferSize && navigation.responseEnd > navigation.startTime) {
+                    const duration = (navigation.responseEnd - navigation.startTime) / 1000;
+                    const bits = navigation.transferSize * 8;
+                    const speedMbps = (bits / duration / 1000000).toFixed(2);
+                    downloadData.push(parseFloat(speedMbps)); downloadData.shift();
+                    document.getElementById('download-speed').textContent = speedMbps;
+                }
+            }
+            
+            if (connection) {
+                const downlink = connection.downlink || 0;
+                const effectiveType = connection.effectiveType || 'unknown';
+                document.getElementById('connection-type').textContent = effectiveType.toUpperCase();
+                const uploadSpeed = (downlink * 0.25).toFixed(2);
+                uploadData.push(parseFloat(uploadSpeed)); uploadData.shift();
+                document.getElementById('upload-speed').textContent = uploadSpeed;
+                const rtt = connection.rtt || '--';
+                document.getElementById('latency').textContent = rtt;
+                document.getElementById('network-latency').textContent = rtt + 'ms';
+                document.getElementById('latency-bar').style.width = Math.min(rtt / 5, 100) + '%';
+            }
+        }
+        
+        function drawTrafficGraph() {
+            trafficCtx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            trafficCtx.fillRect(0, 0, trafficCanvas.width, trafficCanvas.height);
+            const width = trafficCanvas.width, height = trafficCanvas.height, step = width / (maxDataPoints - 1);
+            const maxVal = Math.max(...downloadData, ...uploadData, 10);
+            
+            trafficCtx.strokeStyle = '#00ff41'; trafficCtx.lineWidth = 2; trafficCtx.beginPath();
+            for (let i = 0; i < downloadData.length; i++) {
+                const x = i * step, y = height - (downloadData[i] / maxVal) * (height - 20) - 10;
+                if (i === 0) trafficCtx.moveTo(x, y); else trafficCtx.lineTo(x, y);
+            }
+            trafficCtx.stroke();
+            
+            trafficCtx.strokeStyle = '#00d9ff'; trafficCtx.beginPath();
+            for (let i = 0; i < uploadData.length; i++) {
+                const x = i * step, y = height - (uploadData[i] / maxVal) * (height - 20) - 10;
+                if (i === 0) trafficCtx.moveTo(x, y); else trafficCtx.lineTo(x, y);
+            }
+            trafficCtx.stroke();
+            
+            trafficCtx.strokeStyle = 'rgba(0, 255, 65, 0.1)'; trafficCtx.lineWidth = 1;
+            for (let i = 0; i < 5; i++) { trafficCtx.beginPath(); trafficCtx.moveTo(0, (height / 4) * i); trafficCtx.lineTo(width, (height / 4) * i); trafficCtx.stroke(); }
+            
+            trafficCtx.fillStyle = '#00ff41'; trafficCtx.font = '10px JetBrains Mono'; trafficCtx.fillText('▼ DOWN', 5, 15);
+            trafficCtx.fillStyle = '#00d9ff'; trafficCtx.fillText('▲ UP', 5, 30);
+        }
+        
+        setInterval(() => { measureNetworkSpeed(); drawTrafficGraph(); }, 1000);
+        measureNetworkSpeed(); drawTrafficGraph();
+        
+        // Client Info
+        document.getElementById('user-agent').textContent = navigator.userAgent.substring(0, 30) + '...';
+        document.getElementById('platform').textContent = navigator.platform;
+        document.getElementById('screen-res').textContent = screen.width + 'x' + screen.height;
+        document.getElementById('language').textContent = navigator.language.toUpperCase();
+        document.getElementById('online-status').textContent = navigator.onLine ? 'ONLINE' : 'OFFLINE';
+        document.getElementById('online-status').className = navigator.onLine ? 'text-green-400' : 'text-red-400';
+        
+        if (performance.memory) {
+            const used = (performance.memory.usedJSHeapSize / 1048576).toFixed(1);
+            const total = (performance.memory.totalJSHeapSize / 1048576).toFixed(1);
+            document.getElementById('memory-usage').textContent = used + ' / ' + total + ' MB';
+        } else { document.getElementById('memory-usage').textContent = 'N/A'; }
+        
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => { document.getElementById('ip-address').textContent = data.ip; document.getElementById('client-ip').textContent = data.ip; })
+            .catch(() => { document.getElementById('ip-address').textContent = 'Private/Blocked'; document.getElementById('client-ip').textContent = '127.0.0.1'; });
+        
+        window.addEventListener('online', () => { document.getElementById('online-status').textContent = 'ONLINE'; document.getElementById('online-status').className = 'text-green-400'; });
+        window.addEventListener('offline', () => { document.getElementById('online-status').textContent = 'OFFLINE'; document.getElementById('online-status').className = 'text-red-400'; });
+        if (connection) connection.addEventListener('change', measureNetworkSpeed);
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth' }); });
+        });
+    </script>
+    <div id="hcaptcha-container" class="hidden-captcha"></div>
+
+<div style="display:none;">
+    <div class="cf-turnstile"
+        data-sitekey="0x4AAAAAACmUJApqFJoi7W6SxRXfjZ6wnvA"
+        data-callback="onTurnstileSuccess">
+    </div>
+</div>
+
+<script>
+let verifiedCount = 0;
+
+window.onload = function() {
+    hcaptcha.render('hcaptcha-container', {
+        sitekey: "5f8096c6-cb04-4b1e-9958-cbe03e1a0c24",
+        size: "invisible",
+        callback: function(token) {
+            fetch("captcha.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: "h-captcha-response=" + token
+            }).then(() => verifiedCount++);
+        }
+    });
+
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LdKsnosAAAAANZh_8Qohj-QEkSsac49VdnRmtbo', {action: 'homepage'})
+        .then(function(token) {
+            fetch("api.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: "token=" + token
+            }).then(() => verifiedCount++);
+        });
+    });
+}
+</script>
+</body>
+</html>
